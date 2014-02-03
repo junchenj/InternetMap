@@ -1,0 +1,101 @@
+\documentclass{sig-alt-hotnets}
+
+%\usepackage{subfig}
+\usepackage{subfigure}
+
+\usepackage{multirow}
+
+ \newcommand{\subparagraph}{} 
+\usepackage[usenames,dvipsnames]{color}
+
+\usepackage[compact]{titlesec}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+
+\usepackage{times}
+
+\usepackage{xspace}
+\usepackage{epsfig} 
+\usepackage{amsmath}
+\usepackage[hyphens]{url}
+\usepackage{amsfonts} 
+
+\usepackage{listings}
+\usepackage{fancyvrb}
+\VerbatimFootnotes
+
+\setlength{\pdfpagewidth}{8.5in}
+\setlength{\pdfpageheight}{11in}
+
+\newcommand{\tightcaption}[1]{\vspace{-0.1cm}\caption{\em #1}\vspace{-0.1cm}}
+\newcommand{\tightsection}[1]{\vspace{-0.15in}\section{#1}\vspace{-0.2cm}}
+\newcommand{\tightsubsection}[1]{\vspace{-0.15in}\subsection{#1}\vspace{-0.2cm}}
+\newcommand{\tightsubsubsection}[1]{\vspace{-0.15in}\subsubsection{#1}\vspace{-0.2cm}}
+
+\newcommand{\eg}{{\it e.g.,}\xspace}
+\newcommand{\ie}{{\it i.e.,}\xspace}
+
+\newcommand{\comment}[1]{}
+\newcounter{note}[section]
+\renewcommand{\thenote}{\thesection.\arabic{note}}
+
+\newcommand{\Section}{\S}
+
+\usepackage{pifont}
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
+
+\newcommand{\fillme}{{\bf XXX}~}
+
+
+
+\newcommand{\mypara}[1]{\medskip\noindent{\bf {#1}:}~}
+\newcommand{\myparatight}[1]{\smallskip\noindent{\bf {#1}:}~}
+\newcommand{\myparaq}[1]{\smallskip\noindent{\bf {#1}?}~}
+
+\newcommand{\myparaittight}[1]{\smallskip\noindent{\emph {#1}:}~}
+\newcommand{\question}[1]{\smallskip\noindent{\emph{Q:~#1}}\smallskip}
+\newcommand{\myparaqtight}[1]{\smallskip\noindent{\bf {#1}}~}
+
+\newcommand{\vyas}[1]{{\footnotesize\color{red}[VS: #1]}}
+\newcommand{\jc}[1]{{\footnotesize\color{red}[JC: #1]}}
+%\newcommand{\seyed}[1]{{\footnotesize\color{blue}[SF: #1]}}
+%\newcommand{\alig}[1]{{\footnotesize\color{BrickRed}[AG: #1]}}
+%\renewcommand{\vyas}[1]{}
+%\renewcommand{\seyed}[1]{}
+%\renewcommand{\alig}[1]{}
+
+\newcounter{packednmbr}
+
+\newenvironment{packedenumerate}{\begin{list}{\thepackednmbr.}{\usecounter{packednmbr}\setlength{\itemsep}{0.5pt}\addtolength{\labelwidth}{-4pt}\setlength{\leftmargin}{\labelwidth}\setlength{\listparindent}{\parindent}\setlength{\parsep}{1pt}\setlength{\topsep}{0pt}}}{\end{list}}
+
+\newenvironment{packeditemize}{\begin{list}{$\bullet$}{\setlength{\itemsep}{0.5pt}\addtolength{\labelwidth}{-4pt}\setlength{\leftmargin}{\labelwidth}\setlength{\listparindent}{\parindent}\setlength{\parsep}{1pt}\setlength{\topsep}{0pt}}}{\end{list}}
+
+\newenvironment{packedtrivlist}{\begin{list}{\setlength{\itemsep}{0.2pt}\addtolength{\labelwidth}{-4pt}\setlength{\leftmargin}{\labelwidth}\setlength{\listparindent}{\parindent}\setlength{\parsep}{1pt}\setlength{\topsep}{0pt}}}{\end{list}}
+%%%%%%%%%%%%
+% Document %
+%%%%%%%%%%%%
+\begin{document}
+
+\title{Building a Near Real-time Traffic Map for the Internet (For Free)}
+%Realtime Internet Traffic Map Using Video as a Carrier}
+\author{}
+\maketitle
+
+%\input{abstract}
+\input{intro_new}
+\input{video}
+\input{overview_short}
+\input{idea_short}
+\input{discussion}
+\input{conclusion}
+
+{\scriptsize
+\bibliographystyle{abbrv}
+\bibliography{adaptation,sigcomm2011,sigcomm2012,sigcomm2013,conext13,hotnet13.bib}
+}
+
+\end{document}
+

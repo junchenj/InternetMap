@@ -1,0 +1,49 @@
+\section{Discussion}
+\label{sec:disc}
+
+\mypara{Coverage gaps} Even though we saw in Section 2 that a video analytics
+ provider has sufficient coverage, we may still have ``gaps'' in our traffic map; e.g.,
+ some links may be missing or our data might be stale. One approach to fill in these 
+gaps is to use models of historic behavior (e.g., stability of the link's available 
+ bandwidth or time-of-day effects) to  improve the accuracy of predictions.
+
+\mypara{Improving the routing engine} Systems such as iPlane have already taken
+a significant first step toward providing a good understanding of the routing
+behavior of the Internet. That said, in our early experiments we found that
+there are substantial ``holes'' in the topology maps, especially in the context
+of the client-server patterns we observe with video viewers requesting content
+from CDNs. Thus, a natural next step will be to provide mechanisms to improve
+the accuracy and coverage of the path prediction mechanisms as well. Here, we see a natural
+synergy---the video measurements can in fact serve as a feeder to improve the
+routing engine. For instance, this data can help bootstrap the routing engine
+with more IP pairs and also  ``triggering'' new measurements whenever there are
+significant ``holes'' in the topology maps. 
+ 
+
+\mypara{A federated model} So far, we considered a centralized operation model
+where a single service provider collects and ``owns'' the video data to offer
+the RTM service. It is possible that we can dramatically improve the coverage
+if a small number of large providers cooperatively share the individual RTMs in
+a loosely federated manner. One concern, however, is whether this type of
+sharing may reveal proprietary information; e.g., CDN server selection
+strategies and thus we would need corresponding mechanisms to prevent such
+accidental information leakage. 
+
+\mypara{Scalability}  Our goal so far has largely been to establish the viability 
+ of implementing a RTM service and we have not focused on the scalability, either 
+of the data collection or of the bottleneck inference steps. A natural question 
+ is if there are simple optimizations (e.g., sending ``diff''s or only 
+ reporting significant deviations from previous reports) in the measurement 
+ engine. Similarly, another question is whether the mapping and extrapolation 
+ logic can be distributed (e.g., using MapReduce or other parallelization 
+solutions).
+
+%\subsection{Backend scalability}
+
+%\subsection{Biased visibility of Internet}
+
+%\subsection{More accurate routing engine}
+
+%\subsection{Privacy issues}
+
+%\subsection{Distributing lightweight measurement code}
