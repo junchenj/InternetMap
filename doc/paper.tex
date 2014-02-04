@@ -1,0 +1,242 @@
+%\documentclass{sig-alternate-10pt}
+\documentclass[10pt,twocolumn]{article}
+
+%\usepackage{subfig}
+\usepackage{subfigure}
+
+\usepackage{multirow}
+
+\usepackage[usenames,dvipsnames]{color}
+
+\usepackage[compact]{titlesec}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+
+\usepackage{times}
+
+\usepackage{xspace}
+\usepackage{epsfig} 
+\usepackage{amsmath}
+\usepackage[hyphens]{url}
+\usepackage{amsfonts} 
+
+\usepackage{listings}
+\usepackage{fancyvrb}
+\VerbatimFootnotes
+
+\setlength{\pdfpagewidth}{8.5in}
+\setlength{\pdfpageheight}{11in}
+
+\newcommand{\tightcaption}[1]{\vspace{-0.2cm}\caption{\em #1}\vspace{-0.2cm}}
+\newcommand{\tightsection}[1]{\vspace{-0.02in}\section{#1}\vspace{-0.02in}}
+\newcommand{\tightsubsection}[1]{\vspace{-0.02in}\subsection{#1}\vspace{-0.02in}}
+\newcommand{\tightsubsubsection}[1]{\vspace{-0.02in}\subsubsection{#1}\vspace{-0.02in}}
+
+\newcommand{\eg}{{\it e.g.,}\xspace}
+\newcommand{\ie}{{\it i.e.,}\xspace}
+
+\newcommand{\comment}[1]{}
+\newcounter{note}[section]
+\renewcommand{\thenote}{\thesection.\arabic{note}}
+
+\newcommand{\Section}{\S}
+
+\usepackage{pifont}
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
+
+\newcommand{\fillme}{{\bf XXX}~}
+
+
+\input{macros}
+
+\newcommand{\mypara}[1]{\medskip\noindent{\bf {#1}:}~}
+\newcommand{\myparasum}[1]{\medskip\noindent\underline{\bf{#1}:}~}
+\newcommand{\myparatight}[1]{\smallskip\noindent{\bf {#1}:}~}
+\newcommand{\myparaq}[1]{\smallskip\noindent{\bf {#1}?}~}
+
+\newcommand{\myparaittight}[1]{\smallskip\noindent{\emph {#1}:}~}
+\newcommand{\question}[1]{\smallskip\noindent{\emph{Q:~#1}}\smallskip}
+\newcommand{\myparaqtight}[1]{\smallskip\noindent{\bf {#1}}~}
+
+\newcommand{\vyas}[1]{{\footnotesize\color{red}[VS: #1]}}
+\newcommand{\jc}[1]{{\footnotesize\color{red}[JC: #1]}}
+\newcommand{\henry}[1]{{\footnotesize\color{red}[HM: #1]}}
+\newcommand{\ion}[1]{{\footnotesize\color{red}[IS: #1]}}
+\newcommand{\xil}[1]{{\footnotesize\color{red}[XIL: #1]}}
+
+%\newcommand{\seyed}[1]{{\footnotesize\color{blue}[SF: #1]}}
+%\newcommand{\alig}[1]{{\footnotesize\color{BrickRed}[AG: #1]}}
+%\renewcommand{\vyas}[1]{}
+%\renewcommand{\seyed}[1]{}
+%\renewcommand{\alig}[1]{}
+
+\newcounter{packednmbr}
+
+\newenvironment{packedenumerate}{\begin{list}{\thepackednmbr.}{\usecounter{packednmbr}\setlength{\itemsep}{0.5pt}\addtolength{\labelwidth}{-4pt}\setlength{\leftmargin}{\labelwidth}\setlength{\listparindent}{\parindent}\setlength{\parsep}{1pt}\setlength{\topsep}{0pt}}}{\end{list}}
+
+\newenvironment{packeditemize}{\begin{list}{$\bullet$}{\setlength{\itemsep}{0.5pt}\addtolength{\labelwidth}{-4pt}\setlength{\leftmargin}{\labelwidth}\setlength{\listparindent}{\parindent}\setlength{\parsep}{1pt}\setlength{\topsep}{0pt}}}{\end{list}}
+
+\newenvironment{packedtrivlist}{\begin{list}{\setlength{\itemsep}{0.2pt}\addtolength{\labelwidth}{-4pt}\setlength{\leftmargin}{\labelwidth}\setlength{\listparindent}{\parindent}\setlength{\parsep}{1pt}\setlength{\topsep}{0pt}}}{\end{list}}
+
+\DeclareMathOperator{\E}{\mathbb{E}}
+\DeclareMathOperator{\Var}{\text{Var}}
+
+\usepackage{times}
+\usepackage{fullpage}
+
+\begin{document}
+
+\title{\bf Building a Real-Time Internet Traffic Map}
+\author{Paper \# 123}
+\date{}
+\maketitle
+\thispagestyle{empty}
+
+
+\maketitle 
+
+\begin{abstract}
+This paper presents the design and evaluation of an Internet traffic map system. The core enabling technique is massive and continuous measurement from end-host applications (e.g., Internet video).
+\end{abstract}
+
+\section{Introduction}
+
+\begin{packeditemize}
+	\item Real-time traffic information is increasingly critical for applications to make the best decision for two reasons:
+	\begin{packedenumerate}
+		\item More choices mean more potentials for QoS improvement but also hard to explore locally.
+		\item Internet traffic becomes more and more dynamic.
+		\item Need for such a real-time Internet traffic is shared by many applications, suggesting the huge impact of a service like this.
+	\end{packedenumerate}
+	\item Real-time traffic map for Internet has three requirements
+	\begin{packedenumerate}
+		\item Coverage
+		\item Overhead
+		\item Real-time view
+	\end{packedenumerate}
+	\item Existing approaches do not meet all three requirement. 
+	\item Our argument is that it is feasible to build a real-time Internet traffic map (RITM) by using the massive and continous measurement from popular and bandwidth intensive applications (e.g., streaming video) running at the end hosts.
+	\item This paper present a design and implementation of such a real-time Internet traffic map through addressing two challenges with this approach:
+	\begin{packedenumerate}
+		\item Link-level traffic inference: we present the techniques to extrapolate link-level traffic statistics by combining different data sources, including static Internet topology information. Note the difference to network tomography.
+		\item Scalability: we present a design that is able to handle massive simultaneous measurements from millions of video sessions and maintain a global view of Internet traffic map in near real-time scale.
+	\end{packedenumerate}
+	\item We evaluate the performance of RITM system and show that \fillme (from accuracy-wise and scalability-wise)
+	\item Finally, we use \fillme applications to demonstrate that RITM system can significantly improvement the QoS of applications.
+\end{packeditemize}
+
+
+\section{Motivation}
+We motivate the need for an RITM by using real-trace to show significant variability of (link-level and path-level) available bandwidth in both space and time. 
+
+\subsection{Dataset}
+\begin{packeditemize}
+	\item Describe the dataset: number of sessions, client-ASNs, video objects, servers, etc.
+	\item Link-level performance dataset: ground-truth.
+\end{packeditemize}
+
+
+\subsection{Path-level Variability}
+
+
+\subsection{Link-level Variability}
+
+
+\section{System Overview}
+\subsection{RTM Architecture}
+\begin{packeditemize}
+	\item Give a high-level schematic figure of RITM system with input and ouput.
+	\item RITM system consists of three parts
+	\begin{packedenumerate}
+		\item Data input: video measurement and topology information
+		\item Inference algorithm
+		\item Output: RITM
+		\item Query interfaces
+	\end{packedenumerate}
+\end{packeditemize}
+
+\subsection{Video Measurement Input}
+\begin{packeditemize}
+	\item Video measurement samples, information associated to each session and granularity of measurement (per-minute, per-second or per-chunk)
+	\item Client-side measurement collection
+\end{packeditemize}
+
+\subsection{Topology Information Input}
+\begin{packeditemize}
+	\item Explain the static dataset of topology
+\end{packeditemize}
+
+\subsection{Annotated Real-time Internet Traffic Map}
+\begin{packeditemize}
+	\item Data structure of a link and a node
+	\item Data structure of statistics associated to each link
+	\item Query interface of an RITM.
+\end{packeditemize}
+
+\section{Link-level Traffic Inference}
+\subsection{Problem Formulation}
+\begin{packeditemize}
+	\item Formulate the problem of link-level traffic inference
+\end{packeditemize}
+
+\subsection{Bottleneck Inference Algorithm}
+\begin{packeditemize}
+	\item Basic algorithm
+	\item Improvement techniques (e.g., aggregation, removal of video-induced noise, etc)
+\end{packeditemize}
+
+
+\section{Scalable Backend}
+The implementation of the backend of RITM system must be scalable to handle massive simultaneous upates from client-side video sessions and process them efficiently in order to maintain a near real-time view of RTM.
+
+\myparatight{Measurement sample storage} Store the measurement samples in Hadoop file system
+
+\myparatight{Update RTM in parallel} Process the measurement
+
+\myparatight{Other issues}
+
+
+\section{Evaluation}
+
+\subsection{Micro-benchmarks}
+\subsubsection{Bottleneck Inference Algorithms}
+Use ns-2/3 simulation to show the inference accuracy
+
+\subsubsection{Backend Scalability}
+Use EC2 implementation to test its scalability and process latency.
+
+
+\subsection{Real-trace Evaluation}
+\subsubsection{Coverage}
+
+
+\subsubsection{Accuracy}
+
+
+\section{Applications}
+
+
+\subsection{Path Selection}
+Compare with static/random selection in terms of bandwidth as well as standard video quality metrics (buffering ratio, join time, etc).
+
+\subsection{Edge Server/Cache Selection}
+Compare with static/random selection in terms of bandwidth as well as standard video quality metrics (buffering ratio, join time, etc)
+
+
+\subsection{Peer Selection}
+This represents an application beyond video. Compare with static/random selection in terms of bandwidth.
+
+{\scriptsize
+\bibliographystyle{abbrv}
+\bibliography{adaptation,sigcomm2011,sigcomm2012,sigcomm2013,conext13,nsdi13,sigcomm2014}
+}
+
+%\appendix
+
+%\appendix
+%\input{appendix-evaluationmethodology}
+
+\end{document}
