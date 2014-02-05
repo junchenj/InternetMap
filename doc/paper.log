@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.7.3)  3 FEB 2014 21:54
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.7.3)  5 FEB 2014 17:27
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -344,39 +344,42 @@ File: umsb.fd 2009/06/22 v3.00 AMS symbols B
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14.4> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 101.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 127.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 102.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 135.
 
-Underfull \hbox (badness 1609) in paragraph at lines 172--172
- |[]\OT1/ptm/b/n/12 Annotated Real-time In-ter-net Traf-fic
- []
+Underfull \vbox (badness 6396) has occurred while \output is active []
 
-[1{/usr/local/texlive/2011/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
+ [1{/usr/local/texlive/2011/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
 
 ]
+Underfull \hbox (badness 7362) in paragraph at lines 177--177
+ |[]\OT1/ptm/b/n/14.4 Link-level avail-able band-width
+ []
+
 (./paper.bbl
 
 LaTeX Warning: Empty `thebibliography' environment on input line 3.
 
 ) [2] (./paper.aux) ) 
 Here is how much of TeX's memory you used:
- 4665 strings out of 493633
- 66362 string characters out of 3143378
- 136307 words of memory out of 3000000
- 7861 multiletter control sequences out of 15000+200000
- 21869 words of font info for 57 fonts, out of 3000000 for 9000
+ 4669 strings out of 493633
+ 66394 string characters out of 3143378
+ 136312 words of memory out of 3000000
+ 7863 multiletter control sequences out of 15000+200000
+ 23553 words of font info for 59 fonts, out of 3000000 for 9000
  831 hyphenation exceptions out of 8191
- 38i,8n,32p,311b,236s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 38i,8n,32p,1191b,236s stack positions out of 5000i,500n,10000p,200000b,50000s
 {/usr/local/texlive/2011/texmf-dist/fonts/enc/dvips/base/8
 r.enc}</usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10
 .pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr
-/local/texlive/2011/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
-Output written on paper.pdf (2 pages, 43133 bytes).
+/local/texlive/2011/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/tex
+live/2011/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on paper.pdf (2 pages, 50716 bytes).
 PDF statistics:
- 24 PDF objects out of 1000 (max. 8388607)
- 16 compressed objects within 1 object stream
+ 28 PDF objects out of 1000 (max. 8388607)
+ 19 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

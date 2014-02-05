@@ -99,13 +99,13 @@
 \maketitle 
 
 \begin{abstract}
-This paper presents the design and evaluation of an Internet traffic map system. The core enabling technique is massive and continuous measurement from end-host applications (e.g., Internet video).
+This paper presents the design, implementation and evaluation of a near real-time Internet traffic map (\itm) system which any one can query for the available bandwidth of any link or path. The enabling technique and the major difference from existing systems is the massive and continuous, yet passive measurement from end-host applications (e.g., Internet video). We propose a {\it centralized} architecture to collect passive bandwidth measurement from video players and maintain an \itm based on this information. Such design rises two challenges. First, the bandwidth measurement from video players is  in a much coarser granular both in time (several minutes) and space (path-level) than \itm requires (e.g., within minute and link-level). We address it by a suit of algorithms that leverage the power of massive coarse measurement to infer finer-grained information. Second, with millions of simultaneous measurement samples, the centralized processing can be a bottleneck to maintain \itm with the freshest information. To show its feasibility, we present a highly scalable implementation of the algorithms that generate \itm. Our evaluation shows \fillme
 \end{abstract}
 
 \section{Introduction}
 
 \begin{packeditemize}
-	\item Real-time traffic information is increasingly critical for applications to make the best decision for two reasons:
+	\item Real-time traffic information is increasingly critical for applications to make the best decision for three reasons:
 	\begin{packedenumerate}
 		\item More choices mean more potentials for QoS improvement but also hard to explore locally.
 		\item Internet traffic becomes more and more dynamic.
@@ -113,91 +113,85 @@ This paper presents the design and evaluation of an Internet traffic map system.
 	\end{packedenumerate}
 	\item Real-time traffic map for Internet has three requirements
 	\begin{packedenumerate}
-		\item Coverage
+		\item Coverage: both client/server-side and link-level
 		\item Overhead
 		\item Real-time view
 	\end{packedenumerate}
-	\item Existing approaches do not meet all three requirement. 
-	\item Our argument is that it is feasible to build a real-time Internet traffic map (RITM) by using the massive and continous measurement from popular and bandwidth intensive applications (e.g., streaming video) running at the end hosts.
-	\item This paper present a design and implementation of such a real-time Internet traffic map through addressing two challenges with this approach:
+	\item Existing approaches do not meet all three requirements.  
+	\item Our argument is that we can build a real-time Internet traffic map (\itm) that meets all three requirements by using the massive and continous measurement from popular and bandwidth intensive applications (e.g., streaming video) running at the end hosts, together with other publicly available information (e.g., routing information)
+	\item This paper materializes this approach to \itm through addressing two challenges:
 	\begin{packedenumerate}
 		\item Link-level traffic inference: we present the techniques to extrapolate link-level traffic statistics by combining different data sources, including static Internet topology information. Note the difference to network tomography.
 		\item Scalability: we present a design that is able to handle massive simultaneous measurements from millions of video sessions and maintain a global view of Internet traffic map in near real-time scale.
 	\end{packedenumerate}
-	\item We evaluate the performance of RITM system and show that \fillme (from accuracy-wise and scalability-wise)
-	\item Finally, we use \fillme applications to demonstrate that RITM system can significantly improvement the QoS of applications.
+	\item We evaluate the performance of \itm system and show that \fillme (from accuracy-wise and scalability-wise)
+	\item Finally, we use \fillme applications to demonstrate that \itm system can significantly improvement the QoS of applications.
 \end{packeditemize}
 
 
 \section{Motivation}
-We motivate the need for an RITM by using real-trace to show significant variability of (link-level and path-level) available bandwidth in both space and time. 
+To motivate the need for an \itm, we use real-trace to show significant variability of (link-level and path-level) available bandwidth and bottleneck in both space and time. 
 
 \subsection{Dataset}
 \begin{packeditemize}
 	\item Describe the dataset: number of sessions, client-ASNs, video objects, servers, etc.
-	\item Link-level performance dataset: ground-truth.
+	\item Link-level information dataset: ground-truth over a small set of links that we manually measured using \fillme.
 \end{packeditemize}
 
 
-\subsection{Path-level Variability}
+\subsection{Variability in Available Bandwidth}
+We show that available bandwidth (both of a link and of a path) has significant variability, which suggests that the information must be kept fresh in \fillme granular in time.
 
 
-\subsection{Link-level Variability}
+\subsection{Bottleneck Variability}
+Bottleneck location is important since its bandwidth determines the end-to-end available bandwidth and we show that the location of bottleneck also varies significantly, which suggests the importance of wide coverage in space.
 
 
 \section{System Overview}
-\subsection{RTM Architecture}
+\subsection{\itm ~Architecture}
 \begin{packeditemize}
-	\item Give a high-level schematic figure of RITM system with input and ouput.
-	\item RITM system consists of three parts
+	\item Give a high-level schematic figure of \itm system with input and ouput.
+	\item \itm system consists of three parts
 	\begin{packedenumerate}
-		\item Data input: video measurement and topology information
+		\item Data input: video measurement and routing information
 		\item Inference algorithm
-		\item Output: RITM
+		\item Output: \itm
 		\item Query interfaces
 	\end{packedenumerate}
 \end{packeditemize}
 
 \subsection{Video Measurement Input}
 \begin{packeditemize}
-	\item Video measurement samples, information associated to each session and granularity of measurement (per-minute, per-second or per-chunk)
+	\item Format of input: information associated to each session and granularity of measurement (per-minute, per-second or per-chunk)
 	\item Client-side measurement collection
 \end{packeditemize}
 
-\subsection{Topology Information Input}
+\subsection{Routing Information Input}
 \begin{packeditemize}
-	\item Explain the static dataset of topology
+	\item Format of a routing information
 \end{packeditemize}
 
-\subsection{Annotated Real-time Internet Traffic Map}
-\begin{packeditemize}
-	\item Data structure of a link and a node
-	\item Data structure of statistics associated to each link
-	\item Query interface of an RITM.
-\end{packeditemize}
+\subsection{Challenges}
+Explain and elaborate the two challenges of link-level available bandwidth inference and scalability of backend.
 
-\section{Link-level Traffic Inference}
+\section{Link-level available bandwidth Inference}
 \subsection{Problem Formulation}
-\begin{packeditemize}
-	\item Formulate the problem of link-level traffic inference
-\end{packeditemize}
+Formally describe the problem of link-level traffic inference
+
 
 \subsection{Bottleneck Inference Algorithm}
-\begin{packeditemize}
-	\item Basic algorithm
-	\item Improvement techniques (e.g., aggregation, removal of video-induced noise, etc)
-\end{packeditemize}
+Introduce the intuition and mechanism of a basic algorithm that solves the formulated problem.
 
+
+\subsection{Improvement}
+Improvement techniques (e.g., aggregation, removal of video/player-specific noise, inclusion of incomplete information, etc)
 
 \section{Scalable Backend}
-The implementation of the backend of RITM system must be scalable to handle massive simultaneous upates from client-side video sessions and process them efficiently in order to maintain a near real-time view of RTM.
+The implementation of the backend of \itm system must be scalable to handle massive simultaneous upates from client-side video sessions and process them scalably in order to maintain a near real-time view of \itm. This section presents a scalable implementation of the algorithms in last section.
 
-\myparatight{Measurement sample storage} Store the measurement samples in Hadoop file system
+\subsection{Partition of input}
 
-\myparatight{Update RTM in parallel} Process the measurement
-
-\myparatight{Other issues}
-
+\subsection{Run the algorithms as MapReduce}
 
 \section{Evaluation}
 
